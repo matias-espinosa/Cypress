@@ -1,5 +1,5 @@
 class Login {
-    // Elements
+    //----------------- ELEMENTS -----------------//
     getRegisterToggle() {
         return cy.getByDataCy('registertoggle');
     }
@@ -16,7 +16,7 @@ class Login {
         return cy.getByDataCy('submitForm');
     }
 
-    // Actions
+    //----------------- ACTIONS -----------------//
     goToLogin() {
         this.getRegisterToggle().dblclick();
     }
@@ -33,7 +33,7 @@ class Login {
         this.getSubmitButton().click();
     }
 
-    // Combined Actions
+    //----------------- COMBINED ACTIONS -----------------//
     loginSuccess(userName, password) {
         this.goToLogin()
         this.setUserName(userName);

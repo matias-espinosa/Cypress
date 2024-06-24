@@ -8,12 +8,7 @@ const suiteId = directoryName.split(/[-]/).pop();
 
 
 describe(`${module}`, () => {
-    it('test', () => {
-        cy.log(directoryName)
-        cy.log(module)
-        cy.log(suiteId)
-        cy.log(suiteName)
-    })
+    //IGNORE: First test, no command for data-cy
     it(`${suiteName}-${suiteId}`, () => {
         cy.fixture(`${module}/${suiteName}-${suiteId}/${suiteId}.json`).then(data => {
             cy.log(data.user.name)
@@ -38,6 +33,7 @@ describe(`${module}`, () => {
         cy.get('[data-cy="closeModal"]').click()
         })
     })
+    //IGNORE: Second test, no POM
     it(`${suiteName}-${suiteId}`, () => {
         cy.fixture(`${module}/${suiteName}-${suiteId}/${suiteId}.json`).then(data => {
             cy.log(data.user.name)
@@ -62,21 +58,36 @@ describe(`${module}`, () => {
         cy.getByDataCy('closeModal').click();
         })
     });
-    it.only('Test', () => {
+    //DESAFIO 1
+    it.only(`${suiteName}-${suiteId}`, () => {
+        const login=new Login();
+        const shop=new OnlineShop()
+
         cy.fixture(`${module}/${suiteName}-${suiteId}/${suiteId}.json`).then(data => {
         cy.visit('/')
-        const login=new Login();
-        const add=new OnlineShop()
         login.loginSuccess(data.user.name,data.user.password)
         cy.url().should('include', '/home')
-        add.addProduct(data.producto.name, data.producto.price, data.producto.imgUrl, data.producto.id)
+        shop.addProduct(data.producto.name, data.producto.price, data.producto.imgUrl, data.producto.id)
         cy.intercept('GET', 'https://pushing-it.onrender.com/api/products?page=1&limit=8').as('productsRequest');
         cy.wait('@productsRequest');
         cy.get('#chakra-modal--body-\\:r58\\:')
-        .contains(data.producto.name)
-        .should('exist');
+          .should('have.text', `${data.producto.name} has been added`)
+          .should('exist');
+        shop.closeModal()
+        shop.searchProduct(data.producto.id)
+        shop.deleteProduct()
+        cy.intercept('GET', 'https://pushing-it.onrender.com/api/products?page=1&limit=8').as('productsRequest');
+        cy.wait('@productsRequest');
+        cy.get('#chakra-modal--body-\\:r58\\:')
+          .should('have.text', `${data.producto.name} has been deleted`)
+          .should('exist');
+        shop.closeModal()
+        shop.searchProduct(data.producto.id)
+        shop.getSearchedId()
+            .should('not.exist')
         })
     });
+
 });
 
 

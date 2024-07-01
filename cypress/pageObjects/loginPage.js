@@ -17,28 +17,11 @@ class Login {
     }
 
     //----------------- ACTIONS -----------------//
-    goToLogin() {
-        this.getRegisterToggle().dblclick();
-    }
-
-    setUserName(userName) {
-        this.getUserNameInput().type(userName);
-    }
-
-    setPassword(password) {
-        this.getPasswordInput().type(password);
-    }
-
-    submit() {
-        this.getSubmitButton().click();
-    }
-
-    //----------------- COMBINED ACTIONS -----------------//
     loginSuccess(userName, password) {
-        this.goToLogin()
-        this.setUserName(userName);
-        this.setPassword(password);
-        this.submit();
+        this.getRegisterToggle().dblclick();
+        this.getUserNameInput().type(userName);
+        this.getPasswordInput().type(password);
+        this.getSubmitButton().click();
     }
 }
 

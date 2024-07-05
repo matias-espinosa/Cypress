@@ -19,28 +19,28 @@ Cypress.Commands.add('deleteProductById', (productID) => {
     });
 });
 
+
 Cypress.Commands.add('createProduct', (product) => {
-    cy.request({
+    return cy.request({
         method: "POST",
         url: `${Cypress.env().baseUrlAPI}/create-product`,
         body: product,
         headers: {
             Authorization: `Bearer ${Cypress.env().token}`,
         }
+    }).then((response) => {
+        return response.body.product._id;
     });
-
 });
+
 
 Cypress.Commands.add('editProduct', (productID, updatedProduct) => {
-    cy.getProductById(productID).its('body.products.docs').each((product) => {
-        cy.request({
-            method: "PUT",
-            url: `${Cypress.env().baseUrlAPI}/product/${product._id}`,
-            body: updatedProduct,
-            headers: {
-                Authorization: `Bearer ${Cypress.env().token}`,
-            }
-        });
+    cy.request({
+        method: "PUT",
+        url: `${Cypress.env().baseUrlAPI}/product/${productID}`,
+        body: updatedProduct,
+        headers: {
+            Authorization: `Bearer ${Cypress.env().token}`,
+        }
     });
 });
-

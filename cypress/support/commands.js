@@ -27,7 +27,7 @@
 
 import './requests/products'
 
-Cypress.Commands.add('login', (username, password) => {
+Cypress.Commands.add('loginApi', (username, password) => {
     cy.request({
         method: "POST",
         url: `${Cypress.env().baseUrlAPI}/login`,

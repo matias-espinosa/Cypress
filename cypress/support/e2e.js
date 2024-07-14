@@ -18,3 +18,8 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+before(() => {
+    cy.intercept('DELETE', 'api/tasks**').as('deleteAlltasks')
+    cy.intercept('GET', 'api/tasks**').as('getAllTasks')
+})

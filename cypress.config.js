@@ -8,6 +8,8 @@ module.exports = defineConfig({
     baseUrl: "https://pushing-it.vercel.app",
     watchForFileChanges: false,
     defaultCommandTimeout: 10000,
+    responseTimeout: 60000,
+    requestTimeout: 12000,
     fixturesFolder: 'cypress/e2e/',
     env: {
       admin: {

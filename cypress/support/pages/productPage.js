@@ -13,6 +13,8 @@ export class ProductPage {
         this.delete = 'delete-666';
         this.saveEdit = '#saveEdit';
         this.searchedId = 'name';
+        this.shoppingCart = 'goShoppingCart';
+        this.cartProductPrice = 'unitPrice';
     }
 
     closeModal() {
@@ -41,5 +43,8 @@ export class ProductPage {
 
      getSearchedId() {
         return cy.getByDataCy(this.searchedId);
+    }
+    goToShoppingCart() {
+        cy.getByDataCy(this.shoppingCart).click()
     }
 }

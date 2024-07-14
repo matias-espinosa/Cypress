@@ -5,8 +5,8 @@ Cypress.Commands.add('getProductById', (productID) => {
         headers: {
             Authorization: `Bearer ${Cypress.env().token}`
         }
-    })
-})
+    });
+});
 Cypress.Commands.add('deleteProductById', (productID) => {
     cy.getProductById(productID).its('body.products.docs').each((product) => {
         cy.request({
@@ -41,6 +41,29 @@ Cypress.Commands.add('editProduct', (productID, updatedProduct) => {
         body: updatedProduct,
         headers: {
             Authorization: `Bearer ${Cypress.env().token}`,
+        }
+    });
+});
+
+Cypress.Commands.add('getProductByName', (productName) => {
+    cy.request({
+        method: "GET",
+        url: `${Cypress.env().baseUrlAPI}/products?name=${productName}`,
+        failsOnStatusCode: false,
+        headers: {
+            Authorization: `Bearer ${Cypress.env().token}`
+        }
+    });
+});
+
+
+Cypress.Commands.add('getProducts', () => {
+    cy.request({
+        method: "GET",
+        url: `${Cypress.env().baseUrlAPI}/products`,
+        failsOnStatusCode: false,
+        headers: {
+            Authorization: `Bearer ${Cypress.env().token}`
         }
     });
 });

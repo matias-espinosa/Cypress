@@ -1,0 +1,23 @@
+{
+    "products": [
+            {
+                "name": "Pantalon Retro Arg",
+                "price": 110000,
+                "img": "https://essential.vtexassets.com/arquivos/ids/1508299-800-auto?v=638556057347830000&width=800&height=auto&aspect=true",
+                "id": 666
+            },
+            {
+                "name": "Campera Retro Arg",
+                "price": 160000,
+                "img": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/2bba0736190a495291842bec988bad53_9366/Campera_Deportiva_Tejida_Seleccion_Argentina_1994_Violeta_IS0267_HM30.jpg",
+                "id": 667
+            }
+    ],
+
+    "checkout": {
+        "firstName": "Matias",
+        "lastName": "Espinosa",
+        "cardNumber": "4111111111111111"
+    }
+}
+

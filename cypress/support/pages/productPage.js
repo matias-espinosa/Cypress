@@ -3,6 +3,7 @@ export class ProductPage {
         this.productName = 'productName';
         this.productPrice = 'productPrice';
         this.searchedProductPrice = 'price';
+        this.searchedId = 'name';
         this.addProductSelector = 'add-product';
         this.productCard = 'productCard';
         this.productId = 'productID';
@@ -12,9 +13,16 @@ export class ProductPage {
         this.searchBar = 'search-bar';
         this.delete = 'delete-666';
         this.saveEdit = '#saveEdit';
-        this.searchedId = 'name';
         this.shoppingCart = 'goShoppingCart';
         this.cartProductPrice = 'unitPrice';
+        this.addToCartButtonBase = 'add-to-cart-';
+        this.billingSummary = 'goBillingSummary';
+        this.checkOut = 'goCheckout';
+        this.firstName = 'firstName';
+        this.lastName = 'lastName';
+        this.cardNumber = 'cardNumber';
+        this.purchase = 'purchase';
+        this.sellId = 'sellId';
     }
 
     closeModal() {
@@ -44,7 +52,20 @@ export class ProductPage {
      getSearchedId() {
         return cy.getByDataCy(this.searchedId);
     }
+
     goToShoppingCart() {
         cy.getByDataCy(this.shoppingCart).click()
     }
+
+    clickAddToCartButton(productId) {
+        const selector = `${this.addToCartButtonBase}${productId}`;
+        cy.getByDataCy(selector).should('be.visible').click();
+    }
+
+    fillCheckOutData(firstName,lastName,cardNumber) {
+        cy.getByDataCy(this.firstName).type(firstName);
+        cy.getByDataCy(this.lastName).type(lastName);
+        cy.getByDataCy(this.cardNumber).type(cardNumber);
+    }
+
 }

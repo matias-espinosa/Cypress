@@ -43,6 +43,24 @@ Cypress.Commands.add('loginApi', (username, password) => {
     });
 });
 
+Cypress.Commands.add('loginSession', (username, password) => {
+    cy.session('firstSession', () => {
+        cy.request({
+            method: "POST",
+            url: `${Cypress.env().baseUrlAPI}/login`,
+            body: {
+                username: username,
+                password: password
+            },
+        }).then(respuesta => {
+            window.localStorage.setItem('token', respuesta.body.token);
+            window.localStorage.setItem('user', respuesta.body.user.username);
+            window.localStorage.setItem('userId', respuesta.body.user._id);
+            Cypress.env().token = respuesta.body.token
+        });
+    })
+});
+
 Cypress.Commands.add('getByDataCy', (selector) => {
     return cy.get(`[data-cy=${selector}]`)
 })

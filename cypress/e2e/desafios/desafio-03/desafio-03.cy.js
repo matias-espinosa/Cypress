@@ -62,15 +62,18 @@ describe(`${module} `, () => {
             cy.getByDataCy(productpage.sellId).invoke('text').as('sellId');
 
             cy.get('@sellId').then(sellId => {
-                cy.log(sellId);
                 const getSellIdQuery = `SELECT pp.product, pp.quantity, pp.price, s.id, s."firstName", s."lastName", s."cardNumber" FROM public."purchaseProducts" AS pp INNER JOIN public."sells" AS s ON s.id = pp.sell_id WHERE s."id" = ${sellId}`;
                 cy.task("connectDB", getSellIdQuery).then(result => {
+                    const fixturePrice1 = Number(data.products[0].price).toFixed(2);
+                    const fixturePrice2 = Number(data.products[1].price).toFixed(2);
                     expect(result[0].product).to.be.equal(data.products[0].name)
                     expect(result[0].quantity).to.be.equal(2)
                     expect(result[0].cardNumber).to.be.equal(data.checkout.cardNumber)
+                    expect(result[0].price).to.be.equal(fixturePrice1)
                     expect(result[1].product).to.be.equal(data.products[1].name)
                     expect(result[1].quantity).to.be.equal(2)
                     expect(result[1].cardNumber).to.be.equal(data.checkout.cardNumber)
+                    expect(result[1].price).to.be.equal(fixturePrice2)
                 });
             });
         });

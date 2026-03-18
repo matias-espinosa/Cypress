@@ -1,0 +1,38 @@
+{
+    "products": {
+        "product1": {
+            "quantity": 2,
+            "name": "Buzo Negro",
+            "price": 23.76
+        },
+        "product2": {
+            "quantity": 1,
+            "name": "Zapatillas Azules",
+            "price": 30.33
+        },
+        "product3": {
+            "name": "Remera Negra",
+            "price": 7.12
+        },
+        "product4": {
+            "name": "Jean Azul",
+            "price": 11.98
+        },
+        "product5": {
+            "name": "Sweater rosa",
+            "price": 14.86
+        },
+        "product6": {
+            "name": "Medias Negras",
+            "price": 5.43
+        },
+        "product7": {
+            "name": "Patanlon Pijama Rojo",
+            "price": 12.23
+        },
+        "product8": {
+            "name": "Campera Negra",
+            "price": 20.14
+        }
+    }
+}
